@@ -1,26 +1,41 @@
-# Truemoney Wallet voucher receiver
+# ⚠️ DEPRECATED — NO LONGER WORKING
 
-Used to receive money from voucher link of the truemoney wallet app.
+**This project no longer works** due to upstream API/service changes on TrueMoney's side, and it will not be fixed. It is kept public for reference and educational purposes only.
 
-![](https://seeklogo.com/images/T/truemoney-wallet-logo-9CCDDD6CB0-seeklogo.com.png)
+---
 
+# TrueMoney Wallet Voucher Receiver
 
-#### Example
+A small Python client used to receive money from voucher links of the TrueMoney Wallet app.
+
+Given a voucher URL and your wallet number, it fetches the voucher details and redeems the amount into your wallet.
+
+## Features
+
+- Parses the voucher hash straight from a shared voucher link
+- Verifies voucher details (amount, status) before redeeming
+- Redeems the voucher into your own wallet number
+- Single-file client, no external dependencies beyond `requests`
+
+## Usage
 
 ```python
 from client import Client
 
 
 if (__name__ == '__main__'):
-        client = Client('truemoney wallet number')
-        client.set_voucher_hash('voucher url')
+    client = Client('your TrueMoney wallet number')
+    client.set_voucher_hash('voucher url')
 
-        voucher = client.get_voucher()
-        if (voucher != None):
-
-                result = voucher.redeem()
-                if (result):
-                        print('Received: %s (%s)' % (
-                                voucher.count, voucher.hash
-                        ))
+    voucher = client.get_voucher()
+    if (voucher != None):
+        client.redeem_voucher()
 ```
+
+## Disclaimer
+
+For educational purposes only. Use only with vouchers you legitimately received. The author is not responsible for any misuse.
+
+## License
+
+MIT
